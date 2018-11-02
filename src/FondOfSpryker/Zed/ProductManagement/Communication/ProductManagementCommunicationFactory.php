@@ -23,7 +23,8 @@ class ProductManagementCommunicationFactory extends BaseProductManagementCommuni
             $this->getLocaleFacade(),
             $this->getUtilTextService(),
             $this->createLocaleProvider(),
-            $this->getProductFormTransferMapperExpanderPlugins()
+            $this->getProductFormTransferMapperExpanderPlugins(),
+            $this->createProductConcreteSuperAttributeFilterHelper()
         );
     }
 }
