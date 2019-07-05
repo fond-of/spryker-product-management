@@ -2,16 +2,66 @@
 
 namespace FondOfSpryker\Zed\ProductManagement\Communication;
 
+use FondOfSpryker\Zed\ProductManagement\Communication\Form\ProductConcreteFormAdd;
+use FondOfSpryker\Zed\ProductManagement\Communication\Form\ProductConcreteFormEdit;
+use FondOfSpryker\Zed\ProductManagement\Communication\Form\ProductFormAdd;
+use FondOfSpryker\Zed\ProductManagement\Communication\Form\ProductFormEdit;
 use FondOfSpryker\Zed\ProductManagement\Communication\Tabs\ProductFormAddTabs;
 use FondOfSpryker\Zed\ProductManagement\Communication\Tabs\ProductFormEditTabs;
 use FondOfSpryker\Zed\ProductManagement\Communication\Transfer\ProductFormTransferMapper;
 use FondOfSpryker\Zed\ProductManagement\ProductManagementDependencyProvider;
 use Spryker\Zed\Gui\Communication\Tabs\TabsInterface;
-use Spryker\Zed\ProductManagement\Communication\ProductManagementCommunicationFactory as BaseProductManagementCommunicationFactory;
+use Spryker\Zed\ProductManagement\Communication\ProductManagementCommunicationFactory as SprykerProductManagementCommunicationFactory;
+use Spryker\Zed\ProductManagement\Communication\Transfer\ProductFormTransferMapperInterface;
+use Symfony\Component\Form\FormInterface;
 
-class ProductManagementCommunicationFactory extends BaseProductManagementCommunicationFactory
+class ProductManagementCommunicationFactory extends SprykerProductManagementCommunicationFactory
 {
     public const PLUGINS_PRODUCT_ABSTRACT_FORM_TABS_EXPANDER = 'PLUGINS_PRODUCT_ABSTRACT_FORM_TABS_EXPANDER';
+
+    /**
+     * @param array $formData
+     * @param array $formOptions
+     *
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    public function createProductFormAdd(array $formData, array $formOptions = []): FormInterface
+    {
+        return $this->getFormFactory()->create(ProductFormAdd::class, $formData, $formOptions);
+    }
+
+    /**
+     * @param array $formData
+     * @param array $formOptions
+     *
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    public function createProductFormEdit(array $formData, array $formOptions = []): FormInterface
+    {
+        return $this->getFormFactory()->create(ProductFormEdit::class, $formData, $formOptions);
+    }
+
+    /**
+     * @param array $formData
+     * @param array $formOptions
+     *
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    public function getProductVariantFormAdd(array $formData, array $formOptions = []): FormInterface
+    {
+        return $this->getFormFactory()->create(ProductConcreteFormAdd::class, $formData, $formOptions);
+    }
+
+    /**
+     * @param array $formData
+     * @param array $formOptions
+     *
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    public function createProductVariantFormEdit(array $formData, array $formOptions = []): FormInterface
+    {
+        return $this->getFormFactory()->create(ProductConcreteFormEdit::class, $formData, $formOptions);
+    }
 
     /**
      * @return \Spryker\Zed\Gui\Communication\Tabs\TabsInterface
@@ -35,9 +85,9 @@ class ProductManagementCommunicationFactory extends BaseProductManagementCommuni
     }
 
     /**
-     * @return \Spryker\Zed\ProductManagement\Communication\Transfer\ProductFormTransferMapper
+     * @return \Spryker\Zed\ProductManagement\Communication\Transfer\ProductFormTransferMapperInterface
      */
-    public function createProductFormTransferGenerator()
+    public function createProductFormTransferGenerator(): ProductFormTransferMapperInterface
     {
         return new ProductFormTransferMapper(
             $this->getProductQueryContainer(),
