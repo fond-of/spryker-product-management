@@ -17,8 +17,6 @@ use Symfony\Component\Form\FormInterface;
 
 class ProductManagementCommunicationFactory extends SprykerProductManagementCommunicationFactory
 {
-    public const PLUGINS_PRODUCT_ABSTRACT_FORM_TABS_EXPANDER = 'PLUGINS_PRODUCT_ABSTRACT_FORM_TABS_EXPANDER';
-
     /**
      * @param array $formData
      * @param array $formOptions
