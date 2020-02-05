@@ -99,8 +99,6 @@ class ProductManagementCommunicationFactory extends SprykerProductManagementComm
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\ProductManagement\Dependency\Plugin\ProductAbstractFormTabsExpanderPluginInterface[]
      */
     public function getProductAbstractFormTabsExpanderPlugins(): array
@@ -109,8 +107,6 @@ class ProductManagementCommunicationFactory extends SprykerProductManagementComm
     }
 
     /**
-     * @throws
-     *
      * @return \FondOfSpryker\Zed\ProductManagement\Dependency\Plugin\ProductAbstractFormTabsExpanderPluginInterface[]
      */
     public function getProductAbstractFormTransferMapperExpanderPlugins(): array
